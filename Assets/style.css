@@ -1,0 +1,21 @@
+.container {
+    margin: auto;
+    width: 70%;
+    height: 200px;
+    text-align: center;
+}
+
+h2, h4 {
+    padding: .5rem;
+}
+.heading {
+    margin: 1rem;
+}
+
+.table {
+    box-sizing: content-box;
+  }
+
+.highscore {
+    text-align: center;
+}
