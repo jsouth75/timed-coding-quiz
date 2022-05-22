@@ -1,52 +1,53 @@
-var timer = document.querySelector('#timer')
-const myBtn = document.getElementById("myBtn");
+const startButton = document.getElementById('btn btn-success');
+const questionContainerElement = document.getElementById("question-container");
+const questionElement = document.getElementById("question");
+const answerBtnElement  = document.getElementById("answer-btn");
 
-myBtn.addEventListener("click", function(e) {
-    const start = prompt("questions");
-    document.body.innerHTML = "start";
-});
+let shuffledQuestions, currentQuestionsIndex;
 
+startButton.addEventListener('click', startQuiz);
 
-// var timeleft = 20;
-// var downloadTimer = setInterval(function() {
-//     if (timeleft <= {
-//         clearInterval(downloadTimer)
-//         documengetElementById("countdown").innerHTML = "finished";
-//         }   else {
-//         document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
-//         }
-//         timeleft -= 1; 
-//     }, 1000);
+function startQuiz() {
+    console.log('started');
+    startBtn.classList.add('hide');
+    shuffledQuestions = questions.sort(() => Math.random() - .5);
+    currentQuestionsIndex = 0;
+    questionContainerElement.classList.remove('hide');
+    setNextQuestion();
+};
 
-// document.getElementById("button").addEventListener("click", function() {
-// }
+function setNextQuestion() {
+    showNextQuestion(shuffledQuestions[currentQuestionsIndex])
+};
 
+function showQuestion(question) {
+    questionElement.innerText = question.question
+    question.answers.forEach(answer => {
+        const button = document.createElement('button')
+        button.innerText = answer.innerText
+        button.classList.add('btn')
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
+        button.addEventListener('click', selectAnswer)
+        answerButtonsElement.appendChild(button)
+    });
+};
 
-var choices = document.getElementsByTagName('input[type:radio]');
-var questions = [
+function selectAnswer() {
+
+};
+
+const questions = [
     {
         question: "What is JavaScript?",
         choices: ["foreign language", "name of a band", "programming language", "other"],
         answer: 3
     },
+    
     {
         question: "What is a JavaScript function?",
         choices: ["code designed to perform a particular task", "other", "another", "last choice"],
         answer: 1
     },
 ];
-for (var i = 0, i < questions.length; i++) {
-    var question = questions[i].question;
-    document.write (question);
-    var options = questions[i].choices;
-    for (var opt in options) {
-        for (var radios in choices) {
-            choices[radios].value = options[opt];
-        }
-    }
-}
-
-// var seconds = 120;
-// setInterval(function)() {
-//     timer.innerHTML = seconds--;
-// }, 1000);

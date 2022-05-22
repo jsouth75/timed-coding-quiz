@@ -1,33 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Coding Quiz</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./Assets/style.css">
-  <link rel="stylesheet" href="">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./Assets/style.css">
+  <title>Coding Quiz</title>
 </head>
 <body>
     <div class="container">
-        <h1 class="heading">Javascript coding quiz!</h1>
-        <h2>Good luck!</h2>
-        <h4 id="Timer">Timer starts when you press start</h4>
-        <button id="myBtn" type="button">Start Quiz</button>
-        <section>
-            <input type="radio" name="choices"><br>
-            <input type="radio" name="choices"><br>
-            <input type="radio" name="choices"><br>
-            <input type="radio" name="choices"><br>
-        </section>
-
-    
-            <p id="countdown">Timer</p>
+      <div class="heading">
+        <h1>Javascript coding quiz!</h1>
+        <h2>Good luck!</h2>            
+        <h4 id="Timer">Timer starts when you click start</h4>
+        <h6>10 questions in 2 minutes</h6>
+      </div>
+      <div id="question-container" class="hide">
+        <div id="question">Question</div>
+        <div id="answer-buttons" class="btn-grid">
+          <button type="button" class="btn btn-light">Answer 1</button>
+          <button type="button" class="btn btn-light">Answer 2</button>
+          <button type="button" class="btn btn-light">Answer 3</button>
+          <button type="button" class="btn btn-light">Answer 4</button>
+        </div>
+      </div>
+      <div class="control-btn">
+        <button type="button" class="btn btn-success">Start</button>
+        <button type="button" class="btn btn-success hide">Next</button>
+      </div>
+      <div>
+        <h4 id="countdown">Timer</h4>
+      </div>
         
             <br>
-            
+      
         <!-- high scores -->
+      <div>
         <table class="table">
             <h3 class="highscore">Top 10 Scores</h3>
             <thead >
@@ -90,9 +99,7 @@
               </tr>
             </tbody>
           </table>
-        
-        </div>
-        
+      </div> 
     </div>
     
     <script src="./Assets/script.js"></script>
