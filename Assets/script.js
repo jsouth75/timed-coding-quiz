@@ -143,42 +143,42 @@ const questions = [
     },
 
     {
-        question: "What is the best reason to use an Array?",
+        question: "Which of the following would be a reason to use an Array?",
         answer: [
             {choices: "to declare a function", decision:false},
-            {choices: "variable to hold more than one value", decision:true},
+            {choices: "use as a variable to hold more than one value", decision:true},
             {choices: "to list out multiple functions", decision:false},
             {choices: "to override a function", decision:false}
         ]
     },
 
     {
-        question: "?",
+        question: "What does the Arrow functions allow us to do?",
         answer: [
-            {choices: "foreign language", decision:false},
-            {choices: "name of a band", decision:false},
-            {choices: "programming language", decision:true},
-            {choices: "other", decision:false}
+            {choices: "write an array", decision:false},
+            {choices: "select one of many code blocks to be excuted", decision:false},
+            {choices: "jumps out of a loop", decision:false},
+            {choices: "write shorter function syntax", decision:true}
         ]
     },
 
     {
-        question: "What am I doing?",
+        question: "What does a Boolean represent?",
         answer: [
-            {choices: "foreign language", decision:false},
-            {choices: "name of a band", decision:false},
-            {choices: "programming language", decision:true},
-            {choices: "other", decision:false}
+            {choices: "Value that is either true or false", decision:true},
+            {choices: "specified date and time", decision:false},
+            {choices: "a kind of loop", decision:false},
+            {choices: "math object", decision:false}
         ]
     },
 
     {
-        question: "What am I doing?",
+        question: "Which method would you use to sort an array alphabetically?",
         answer: [
-            {choices: "foreign language", decision:false},
-            {choices: "name of a band", decision:false},
-            {choices: "programming language", decision:true},
-            {choices: "other", decision:false}
+            {choices: "sort(order)", decision:false},
+            {choices: "sort()", decision:true},
+            {choices: "sort(a)", decision:false},
+            {choices: "sort.alpha()", decision:false}
         ]
     },
 ];
