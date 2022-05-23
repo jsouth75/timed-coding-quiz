@@ -7,26 +7,32 @@
 const startButton = document.getElementById('start-btn');
 const startBtnContainer = document.getElementById('start-container');
 const questionContainerElement = document.getElementById("question-container");
+const timerElement = document.getElementById("countdown");
 const questionElement = document.getElementById("question");
 const answerBtnElement  = document.getElementById("answer-buttons");
 const nextButton = document.getElementById('next-btn')
 const userInitials = document.getElementById('initials');
 const endQuizContainer = document.getElementById('end-quiz-container');
-let shuffledQuestions, currentQuestionsIndex;
+let shuffledQuestions, currentQuestionsIndex, currentScore;
+let timeRemaining = 120;
 
 startButton.addEventListener('click', startQuiz);
 
 function startQuiz() {
-    startBtnContainer.classList.add('hide')
+    startBtnContainer.classList.add('hide');
     shuffledQuestions = questions.sort(() => Math.random() - .5);
     currentQuestionsIndex = 0;
+    currentScore = 0;
     questionContainerElement.classList.remove('hide');
+    timerElement.classList.remove('hide');
+    startTimer();
     setNextQuestion();
 };
 
 function stopQuiz() {
-
-    // stop timer
+    // alert(`Your score is "${currentScore + timeRemaining/10}"!`)
+    endQuizContainer.setAttribute("class", "show")
+    questionContainerElement.setAttribute("class", "hide")
     // present score
     // ask for initials
 }
@@ -48,6 +54,17 @@ function showNextQuestion(shuffledQuestion) {
     });
 }
 
+function startTimer() {
+    var quizInterval = setInterval(function(){
+        timeRemaining--;
+        document.querySelector("#time").textContent = timeRemaining;
+
+        if(timeRemaining <= 0 || currentQuestionsIndex >= questions.length) {
+            clearInterval(quizInterval)
+        }
+    }, 1000)
+}
+
 function resetState() {
     while (answerBtnElement.firstChild) {
         answerBtnElement.removeChild
@@ -62,9 +79,11 @@ function selectAnswer(e) {
         if (btnClicked.innerText === option.choices) {
             if (option.decision) {
                 btnClicked.classList.add("btn-correct");
+                currentScore += 5;
 // // add point system
             } else {
                 btnClicked.classList.add("btn-wrong");
+                timeRemaining -= 10;
 // deduct point system
             }
         };
@@ -103,7 +122,7 @@ const questions = [
     },
 
     {
-        question: "Which one is not used to declare a JavaScript variable?",
+        question: "Which one is NOT used to declare a JavaScript variable?",
         answer: [
             {choices: "var", decision:false},
             {choices: "const", decision:false},

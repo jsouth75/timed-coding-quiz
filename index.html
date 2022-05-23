@@ -11,10 +11,10 @@
 <body>
     <div class="container">
       <div class="heading">
-        <h1>Javascript coding quiz!</h1>
-        <p>Good Luck!</p>            
+        <h1 class="header">Javascript coding quiz!</h1>
+        <p class="message">Good Luck!</p>            
         <div id="Timer">Timer starts when you click start</div>
-        <p>10 questions in 2 minutes</p>
+        <p>10 questions / 2 minutes</p>
       </div>
       <div id="question-container" class="hide">
         <div id="question">Question</div>
@@ -34,10 +34,10 @@
         <label for="initials">Enter your initials here.</label>
         <input id="initials" type="text" maxlength="3">
       </div>
-      <div>
-        <h4 id="countdown">Timer</h4>
+      <div id="countdown" class="hide">
+        <h4>Timer: <span id="time">120</span></h4>
       </div>
-        
+      
             <br>
       
         <!-- high scores -->
