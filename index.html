@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coding Quiz</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="./Assets/style.css">
-  <title>Coding Quiz</title>
 </head>
 <body>
     <div class="container">
       <div class="heading">
         <h1>Javascript coding quiz!</h1>
-        <h2>Good luck!</h2>            
-        <h4 id="Timer">Timer starts when you click start</h4>
-        <h6>10 questions in 2 minutes</h6>
+        <p>Good Luck!</p>            
+        <div id="Timer">Timer starts when you click start</div>
+        <p>10 questions in 2 minutes</p>
       </div>
       <div id="question-container" class="hide">
         <div id="question">Question</div>
@@ -25,9 +25,14 @@
           <button type="button" class="btn btn-light">Answer 4</button>
         </div>
       </div>
-      <div class="control-btn">
-        <button type="button" class="btn btn-success">Start</button>
-        <button type="button" class="btn btn-success hide">Next</button>
+      <div id="start-container" class="control-btn">
+        <button id="start-btn" class="start-btn btn">Start</button>
+      </div>
+      <div id="end-quiz-container" class="hide">
+        <h3>Quiz Complete</h3>
+        <p id="score"></p>
+        <label for="initials">Enter your initials here.</label>
+        <input id="initials" type="text" maxlength="3">
       </div>
       <div>
         <h4 id="countdown">Timer</h4>

@@ -1,53 +1,184 @@
-const startButton = document.getElementById('btn btn-success');
+// finish end quiz
+// add user score to local storage.  It will rewrite the top score each time, so give value to that user name.
+// print user info in top scores
+// timer
+
+
+const startButton = document.getElementById('start-btn');
+const startBtnContainer = document.getElementById('start-container');
 const questionContainerElement = document.getElementById("question-container");
 const questionElement = document.getElementById("question");
-const answerBtnElement  = document.getElementById("answer-btn");
-
+const answerBtnElement  = document.getElementById("answer-buttons");
+const nextButton = document.getElementById('next-btn')
+const userInitials = document.getElementById('initials');
+const endQuizContainer = document.getElementById('end-quiz-container');
 let shuffledQuestions, currentQuestionsIndex;
 
 startButton.addEventListener('click', startQuiz);
 
 function startQuiz() {
-    console.log('started');
-    startBtn.classList.add('hide');
+    startBtnContainer.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5);
     currentQuestionsIndex = 0;
     questionContainerElement.classList.remove('hide');
     setNextQuestion();
 };
 
+function stopQuiz() {
+
+    // stop timer
+    // present score
+    // ask for initials
+}
+
 function setNextQuestion() {
+    resetState()
     showNextQuestion(shuffledQuestions[currentQuestionsIndex])
 };
 
-function showQuestion(question) {
-    questionElement.innerText = question.question
-    question.answers.forEach(answer => {
-        const button = document.createElement('button')
-        button.innerText = answer.innerText
+function showNextQuestion(shuffledQuestion) {
+    questionElement.innerText = shuffledQuestion.question
+    shuffledQuestion.answer.forEach(answer => {
+        const button = document.createElement('button');
+        button.innerText = answer.choices;
         button.classList.add('btn')
-        if (answer.correct) {
-            button.dataset.correct = answer.correct
-        }
-        button.addEventListener('click', selectAnswer)
-        answerButtonsElement.appendChild(button)
+        button.addEventListener('click', (e) => selectAnswer(e))
+        console.log(button)
+        answerBtnElement.appendChild(button)
     });
-};
+}
 
-function selectAnswer() {
+function resetState() {
+    while (answerBtnElement.firstChild) {
+        answerBtnElement.removeChild
+        (answerBtnElement.firstChild)
+    }
+}
 
+function selectAnswer(e) {
+    var btnClicked = e.target
+    shuffledQuestions[currentQuestionsIndex].answer.forEach(option => {
+        console.log(btnClicked.innerText, option.choices)
+        if (btnClicked.innerText === option.choices) {
+            if (option.decision) {
+                btnClicked.classList.add("btn-correct");
+// // add point system
+            } else {
+                btnClicked.classList.add("btn-wrong");
+// deduct point system
+            }
+        };
+    });
+    currentQuestionsIndex++;
+    if (shuffledQuestions.length < currentQuestionsIndex + 1) {
+        setTimeout(() => {
+            stopQuiz();
+        })
+    }   else {
+        setTimeout(() => {
+            setNextQuestion();
+        })
+    }
 };
 
 const questions = [
     {
         question: "What is JavaScript?",
-        choices: ["foreign language", "name of a band", "programming language", "other"],
-        answer: 3
+        answer: [
+            {choices: "foreign language", decision:false},
+            {choices: "name of a band", decision:false},
+            {choices: "programming language", decision:true},
+            {choices: "coffee shop", decision:false}
+        ]
     },
     
     {
-        question: "What is a JavaScript function?",
-        choices: ["code designed to perform a particular task", "other", "another", "last choice"],
-        answer: 1
+        question: "Who invented JavaScript?",
+        answer: [
+            {choices: "Mitchell Baker", decision:false},
+            {choices: "Brendan Eich", decision:true},
+            {choices: "Steve Jobs", decision:false},
+            {choices: "Abby Covert", decision:false}
+        ]
+    },
+
+    {
+        question: "Which one is not used to declare a JavaScript variable?",
+        answer: [
+            {choices: "var", decision:false},
+            {choices: "const", decision:false},
+            {choices: "let", decision:false},
+            {choices: "text", decision:true}
+        ]
+    },
+
+    {
+        question: "What is the result of an Array pop() method?",
+        answer: [
+            {choices: "deletes the entire array", decision:false},
+            {choices: "deletes the first element of an array", decision:false},
+            {choices: "deletes the last element of an array", decision:true},
+            {choices: "adds an element to an array", decision:false}
+        ]
+    },
+
+    {
+        question: "What is a while loop ?",
+        answer: [
+            {choices: "loops through a block of code as long as a specified condition is true", decision:true},
+            {choices: "loops through a block of code as long as a specified condition is false", decision:false},
+            {choices: "loops through a random set of codes", decision:false},
+            {choices: "none of the above", decision:false}
+        ]
+    },
+
+    {
+        question: "What is used for a single line comment?",
+        answer: [
+            {choices: "<!-- -->", decision:false},
+            {choices: "/*  */", decision:false},
+            {choices: "//", decision:true},
+            {choices: "\\", decision:false}
+        ]
+    },
+
+    {
+        question: "What is the best reason to use an Array?",
+        answer: [
+            {choices: "to declare a function", decision:false},
+            {choices: "variable to hold more than one value", decision:true},
+            {choices: "to list out multiple functions", decision:false},
+            {choices: "to override a function", decision:false}
+        ]
+    },
+
+    {
+        question: "?",
+        answer: [
+            {choices: "foreign language", decision:false},
+            {choices: "name of a band", decision:false},
+            {choices: "programming language", decision:true},
+            {choices: "other", decision:false}
+        ]
+    },
+
+    {
+        question: "What am I doing?",
+        answer: [
+            {choices: "foreign language", decision:false},
+            {choices: "name of a band", decision:false},
+            {choices: "programming language", decision:true},
+            {choices: "other", decision:false}
+        ]
+    },
+
+    {
+        question: "What am I doing?",
+        answer: [
+            {choices: "foreign language", decision:false},
+            {choices: "name of a band", decision:false},
+            {choices: "programming language", decision:true},
+            {choices: "other", decision:false}
+        ]
     },
 ];

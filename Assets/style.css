@@ -1,19 +1,12 @@
-:root {
-    --hue-background: radial-gradient(rgb(161, 242, 140), rgb(101, 179, 210));
-    /* background: rgba(74, 126, 230, 0.3) */
-    --hue-wrong: 0;
-    --hue-correct: 128;
-}
-
 body {
-    --hue: var(--hue-background);
+    background: radial-gradient(rgb(161, 242, 140), rgb(101, 179, 210));
+    /* background: rgba(74, 126, 230, 0.3) */
     margin: auto;
     display: flex;
     width: 70%;
     height: 200px;
     justify-content: center;
     text-align: center;
-    background: var(--hue);
 }
 
 body.correct {
@@ -40,7 +33,7 @@ h2, h4 {
     text-align: center;
 }
 
-#question-container, .control-btn {
+#question-container, .control-btn, #end-quiz-container{
     width: 100%;
     background-color: white;
     border-radius: 1rem;
@@ -66,12 +59,12 @@ h2, h4 {
     border-style: double;
 }
 
-.btn.correct {
-    --hue: var(--hue-wrong);
+.btn-wrong {
+    color: red;
 }
 
-.btn.correct {
-    --hue: var(--hue-correct);
+.btn-correct {
+    color: green;
 }
 
 .hide {
