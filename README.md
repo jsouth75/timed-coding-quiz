@@ -11,7 +11,7 @@ Create a timed quiz on JavaScript fundamentals that stores high scores to compar
     6.  Also, when the quiz is over your score will appear and prompt for your initials.
     7.  The initials and score will be saved to compare with your peers.
 
-URL: 
-GitHub:
+URL: https://jsouth75.github.io/timed-coding-quiz/
+GitHub link: https://github.com/jsouth75/timed-coding-quiz
 
 ![Screenshot of JavaScript Quiz](./Assets/Screen%20Shot%20JavaScript%20Quiz.png)
