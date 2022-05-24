@@ -1,7 +1,5 @@
-// finish end quiz
 // add user score to local storage.  It will rewrite the top score each time, so give value to that user name.
 // print user info in top scores
-// timer
 
 
 const startButton = document.getElementById('start-btn');
@@ -10,14 +8,19 @@ const questionContainerElement = document.getElementById("question-container");
 const timerElement = document.getElementById("countdown");
 const questionElement = document.getElementById("question");
 const answerBtnElement  = document.getElementById("answer-buttons");
-const nextButton = document.getElementById('next-btn')
+// const nextButton = document.getElementById('next-btn')
 const userInitials = document.getElementById('initials');
 const endQuizContainer = document.getElementById('end-quiz-container');
+const storeScores = document.getElementById('storeScores');
+const submitInitials =document.getElementById('submitInitials');
+// const scoreCard = JSON.stringify({table:"students",limit:20});
+var scoreText;
+var score = 0;
 let shuffledQuestions, currentQuestionsIndex, currentScore;
 let timeRemaining = 120;
 
+// start quiz
 startButton.addEventListener('click', startQuiz);
-
 function startQuiz() {
     startBtnContainer.classList.add('hide');
     shuffledQuestions = questions.sort(() => Math.random() - .5);
@@ -29,19 +32,21 @@ function startQuiz() {
     setNextQuestion();
 };
 
+// stop quiz
 function stopQuiz() {
-    // alert(`Your score is "${currentScore + timeRemaining/10}"!`)
+    // score.setAttribute("") ("currentScore + timeRemaining/10}!`)
     endQuizContainer.setAttribute("class", "show")
     questionContainerElement.setAttribute("class", "hide")
-    // present score
     // ask for initials
 }
 
+// starts questions
 function setNextQuestion() {
     resetState()
     showNextQuestion(shuffledQuestions[currentQuestionsIndex])
 };
 
+// shuffles questions
 function showNextQuestion(shuffledQuestion) {
     questionElement.innerText = shuffledQuestion.question
     shuffledQuestion.answer.forEach(answer => {
@@ -54,6 +59,7 @@ function showNextQuestion(shuffledQuestion) {
     });
 }
 
+// timer function starts when start StartQuiz btn is "clicked"
 function startTimer() {
     var quizInterval = setInterval(function(){
         timeRemaining--;
@@ -69,22 +75,25 @@ function resetState() {
     while (answerBtnElement.firstChild) {
         answerBtnElement.removeChild
         (answerBtnElement.firstChild)
+        document.querySelector("#reset").textContent = timeRemaining;
+        if(timeRemaining <= 0 || currentQuestionsIndex >= questions.length) {
+            clearInterval(quizInterval)
+        }
     }
 }
 
 function selectAnswer(e) {
     var btnClicked = e.target
     shuffledQuestions[currentQuestionsIndex].answer.forEach(option => {
-        console.log(btnClicked.innerText, option.choices)
+        // console.log(btnClicked.innerText, option.choices)
         if (btnClicked.innerText === option.choices) {
             if (option.decision) {
                 btnClicked.classList.add("btn-correct");
-                currentScore += 5;
+                currentScore += 10;
 // // add point system
             } else {
                 btnClicked.classList.add("btn-wrong");
                 timeRemaining -= 10;
-// deduct point system
             }
         };
     });
@@ -99,6 +108,32 @@ function selectAnswer(e) {
         })
     }
 };
+
+// display scores
+function scoreCard() {
+    while (answerBtnElement.firstChild) {
+        answerBtnElement.removeChild
+        (answerBtnElement.firstChild)
+        document.querySelector("#reset").textContent = timeRemaining;
+        if(timeRemaining <= 0 || currentQuestionsIndex >= questions.length) {
+            clearInterval(quizInterval)
+        }
+    }
+}
+
+
+// const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+// finalScore.innerText = mostRecentScore;
+
+// saveHighScore = e => {
+//     e.preventDefault();
+  
+//     const scoreList = {
+//         scoreList: mostRecentScore,
+//         name: username.value
+//     };
+//     highScores.push(scoreList);
+// };
 
 const questions = [
     {
