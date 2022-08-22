@@ -85,12 +85,10 @@ function resetState() {
 function selectAnswer(e) {
     var btnClicked = e.target
     shuffledQuestions[currentQuestionsIndex].answer.forEach(option => {
-        // console.log(btnClicked.innerText, option.choices)
         if (btnClicked.innerText === option.choices) {
             if (option.decision) {
                 btnClicked.classList.add("btn-correct");
                 currentScore += 10;
-// // add point system
             } else {
                 btnClicked.classList.add("btn-wrong");
                 timeRemaining -= 10;
@@ -122,18 +120,28 @@ function scoreCard() {
 }
 
 
-// const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-// finalScore.innerText = mostRecentScore;
+function highScore(points) {
+    var initials = document.getElementById("initials").ariaValueMax;
+    if (localStorage.getItem('initials') == null) {
+        localStorage.setItem('initials', '[]')
+    }
+    if (localStorage.getItem('points') == null) {
+        localStorage.setItem('points', '[]');
+    }
+    var pointList = JSON.parse(localStorage.getItem('points'));
+    pointList.push(points);
+    localStorage.setItem('points', JSON.stringify(pointList));
+    var initialList = JSON.parse(localStorage.getItem('initials'));
+    initialList.push(initials);
+    localStorage.setItem('initial', JSON.stringify(initialList));
+    showHighScores();
+    console.log("show me the score")
+}
 
-// saveHighScore = e => {
-//     e.preventDefault();
-  
-//     const scoreList = {
-//         scoreList: mostRecentScore,
-//         name: username.value
-//     };
-//     highScores.push(scoreList);
-// };
+function showHighScores() {
+    scoreCard();
+}
+
 
 const questions = [
     {
